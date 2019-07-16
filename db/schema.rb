@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_075521) do
+ActiveRecord::Schema.define(version: 2019_07_15_030751) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_07_12_075521) do
     t.integer "locale_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_locales_on_course_id"
+    t.index ["locale_id"], name: "index_course_locales_on_locale_id"
   end
 
   create_table "course_tags", force: :cascade do |t|
@@ -31,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_07_12_075521) do
     t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_tags_on_course_id"
+    t.index ["tag_id"], name: "index_course_tags_on_tag_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -38,12 +42,13 @@ ActiveRecord::Schema.define(version: 2019_07_12_075521) do
     t.string "type", null: false
     t.boolean "published", default: false, null: false
     t.boolean "disabled", default: false, null: false
-    t.boolean "is_free", default: false, null: false
-    t.decimal "price", precision: 13, scale: 4
+    t.decimal "price", precision: 13, scale: 4, default: "0.0", null: false
     t.integer "instructor_id", null: false
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_courses_on_category_id"
+    t.index ["instructor_id"], name: "index_courses_on_instructor_id"
   end
 
   create_table "instructors", force: :cascade do |t|

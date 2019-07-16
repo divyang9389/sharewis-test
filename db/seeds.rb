@@ -14,7 +14,7 @@ course = Course.find_or_create_by(
   type: 'ProCourse',
   title: 'Comprehensive Ruby 2.x Programming',
   category_id: programming.id,
-  published: true,
+  published: false,
   price: 10000.0,
   instructor_id: instructor_jordan.id
 )
@@ -22,14 +22,15 @@ course = Course.find_or_create_by(
 CourseLocale.find_or_create_by(course_id: course.id, locale_id: en.id)
 
 CourseLocale.find_or_create_by(course_id: course.id, locale_id: ja.id)
-
+course.update(published: true)
 CourseTag.create(course_id: course.id, tag_id: ruby.id)
+
 
 course = Course.find_or_create_by(
   type: 'ProCourse',
   title: 'Comprehensive Ruby 1.x Programming',
   category_id: programming.id,
-  published: true,
+  published: false,
   disabled: true,
   price: 8000.0,
   instructor_id: instructor_jordan.id
@@ -38,5 +39,5 @@ course = Course.find_or_create_by(
 CourseLocale.find_or_create_by(course_id: course.id, locale_id: en.id)
 
 CourseLocale.find_or_create_by(course_id: course.id, locale_id: ja.id)
-
+course.update(published: true)
 CourseTag.create(course_id: course.id, tag_id: ruby.id)
