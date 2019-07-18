@@ -5,8 +5,8 @@ class CoursesController < ApplicationController
     locale_code = params[:locale_code].in?(%w(en ja vi)) ? params[:locale_code] : default_locale_code
     locale = Locale.find_by(code: locale_code)
     courses = locale.courses
-
-    courses = CourseSearchService::CourseSearchService.new(courses: courses, params_data: params).search
+    params_data = permitted_params
+    courses = CourseSearchService::CourseSearchService.new(courses: courses, params_data: params_data).search
 
     courses = courses.distinct
 
@@ -30,6 +30,7 @@ class CoursesController < ApplicationController
       :category_slug,
       :tag_ids,
       :tag_slugs,
+      :q
       :page)
   end
 end
