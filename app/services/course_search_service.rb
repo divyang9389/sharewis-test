@@ -1,5 +1,5 @@
 module CourseSearchService
-  class CourseSearchService
+  class CourseSearchService < BaseService
     def initialize(courses: nil, params_data: {})
       @courses = courses
       @params_data = params_data

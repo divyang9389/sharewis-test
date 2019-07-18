@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 
     locale_code = params[:locale_code].in?(%w(en ja vi)) ? params[:locale_code] : default_locale_code
     locale = Locale.find_by(code: locale_code)
-    courses = locale.courses.joins(:course_locales).where('course_locales.locale_id = ?', locale&.id)
+    courses = locale.courses
 
     courses = CourseSearchService::CourseSearchService.new(courses: courses, params_data: params).search
 
