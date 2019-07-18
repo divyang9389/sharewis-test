@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
       :category_slug,
       :tag_ids,
       :tag_slugs,
-      :q
+      :q,
       :page)
   end
 end
