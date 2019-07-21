@@ -16,7 +16,7 @@ class Course < ApplicationRecord
 
   def require_locale
     if self.published
-      unless self.course_locales.present?
+      unless self.course_locales.exists?
         errors.add(:published, "you have to set locale to publish.")
       end
     end
